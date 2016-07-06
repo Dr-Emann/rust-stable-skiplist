@@ -1,4 +1,4 @@
-[Rust Skiplist](http://www.jpellis.me/projects/rust-skiplist) [![crates.io](https://img.shields.io/crates/v/skiplist.svg)](https://crates.io/crates/skiplist) [![crates.io](https://img.shields.io/crates/d/skiplist.svg)](https://crates.io/crates/skiplist) [![Build Status](https://img.shields.io/travis/JP-Ellis/rust-skiplist/master.svg)](https://travis-ci.org/JP-Ellis/rust-skiplist)
+Rust Stable Skiplist
 =============
 
 A [skiplist](http://en.wikipedia.org/wiki/Skip_list) provides a way of storing
@@ -10,9 +10,5 @@ There are three kinds of collections defined here:
   allows for access nodes at a given index.
 - **SkipMap**  A map in which the keys are ordered.
 
-Documentation can be found
-[here](http://www.jpellis.me/rust-skiplist/skiplist/) and the cargo crate
-can be found [here](https://crates.io/crates/skiplist).
-
-The various `range` methods only work on the nightly version of Rust and
-consequently are only enabled with the `unstable` feature.
+This was forked from https://github.com/JP-Ellis/rust-skiplist and modified to use
+its own version of Bound, so that its `range` methods are usable with stable Rust.

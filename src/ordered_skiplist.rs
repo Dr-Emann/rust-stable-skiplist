@@ -977,9 +977,8 @@ impl<T> OrderedSkipList<T> {
     /// # Examples
     ///
     /// ```
-    /// #![feature(collections_bound)]
     /// use skiplist::OrderedSkipList;
-    /// use std::collections::Bound::{Included, Unbounded};
+    /// use skiplist::Bound::{Included, Unbounded};
     ///
     /// let mut skiplist = OrderedSkipList::new();
     /// skiplist.extend(0..10);

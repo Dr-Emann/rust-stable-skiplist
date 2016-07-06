@@ -26,7 +26,6 @@
 #![allow(dead_code)]
 
 extern crate rand;
-#[cfg(test)] extern crate test;
 
 mod level_generator;
 mod skipnode;

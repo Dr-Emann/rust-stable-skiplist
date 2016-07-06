@@ -1,6 +1,4 @@
 extern crate rand;
-#[cfg(test)]
-extern crate test;
 
 use super::Bound;
 use std::borrow::Borrow;
@@ -1724,7 +1722,7 @@ impl<'a, K, V> DoubleEndedIterator for Values<'a, K, V> {
 
 #[cfg(test)]
 mod tests {
-    use super::Bound::{self, Included, Excluded, Unbounded};
+    use Bound::{self, Included, Excluded, Unbounded};
     use super::SkipMap;
 
     #[test]
@@ -1943,7 +1941,7 @@ mod tests {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature="bench"))]
 mod bench {
     extern crate rand;
 

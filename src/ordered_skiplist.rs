@@ -1,6 +1,4 @@
 extern crate rand;
-#[cfg(test)]
-extern crate test;
 
 use super::Bound;
 use std::cmp::{self, Ordering};
@@ -1612,7 +1610,7 @@ impl<T> DoubleEndedIterator for IntoIter<T> {
 
 #[cfg(test)]
 mod tests {
-    use std::collections::Bound::{self, Included, Excluded, Unbounded};
+    use Bound::{self, Included, Excluded, Unbounded};
     use super::OrderedSkipList;
 
     #[test]
@@ -1878,7 +1876,7 @@ mod tests {
     }
 }
 
-#[cfg(test)]
+#[cfg(all(test, feature="bench"))]
 mod bench {
     extern crate rand;
 

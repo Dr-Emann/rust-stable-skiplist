@@ -2,10 +2,9 @@ extern crate rand;
 #[cfg(test)]
 extern crate test;
 
+use super::Bound;
 use std::borrow::Borrow;
 use std::cmp::{self, Ordering};
-#[cfg(feature = "unstable")]
-use std::collections::Bound;
 use std::default;
 use std::fmt;
 use std::hash::{self, Hash};
@@ -927,9 +926,8 @@ impl<K, V> SkipMap<K, V> {
     /// # Examples
     ///
     /// ```
-    /// #![feature(collections_bound)]
     /// use skiplist::SkipMap;
-    /// use std::collections::Bound::{Included, Unbounded};
+    /// use skiplist::Bound::{Included, Unbounded};
     ///
     /// let mut skipmap = SkipMap::new();
     /// skipmap.extend((0..10).map(|x| (x, x)));
@@ -938,7 +936,6 @@ impl<K, V> SkipMap<K, V> {
     /// }
     /// assert_eq!(Some((&4, &4)), skipmap.range(Included(&4), Unbounded).next());
     /// ```
-    #[cfg(feature = "unstable")]
     pub fn range<Q>(&self, min: Bound<&Q>, max: Bound<&Q>) -> Iter<K, V>
         where K: Borrow<Q>,
               Q: Ord
@@ -1727,7 +1724,7 @@ impl<'a, K, V> DoubleEndedIterator for Values<'a, K, V> {
 
 #[cfg(test)]
 mod tests {
-    use std::collections::Bound::{self, Included, Excluded, Unbounded};
+    use super::Bound::{self, Included, Excluded, Unbounded};
     use super::SkipMap;
 
     #[test]

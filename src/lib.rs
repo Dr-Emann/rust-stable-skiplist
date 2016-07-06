@@ -23,9 +23,6 @@
 //! **Failure to satisfy these properties can result in unexpected behaviour at best, and at worst
 //! will cause a segfault, null deref, or some other bad behaviour.**
 
-#![cfg_attr(feature = "unstable", feature(collections_bound))]
-#![cfg_attr(test, feature(test, collections_bound))]
-
 #![allow(dead_code)]
 
 extern crate rand;
@@ -36,6 +33,17 @@ mod skipnode;
 pub mod ordered_skiplist;
 pub mod skipmap;
 pub mod skiplist;
+
+/// An endpoint of a range of keys.
+#[derive(Clone, Copy, Debug, Hash, PartialEq, Eq)]
+pub enum Bound<T> {
+    /// An inclusive bound.
+    Included(T),
+    /// An exclusive bound.
+    Excluded(T),
+    /// An infinite endpoint. Indicates that there is no bound in this direction.
+    Unbounded,
+}
 
 pub use ordered_skiplist::OrderedSkipList;
 pub use skipmap::SkipMap;

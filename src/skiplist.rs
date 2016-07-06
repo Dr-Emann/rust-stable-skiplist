@@ -2,9 +2,8 @@ extern crate rand;
 #[cfg(test)]
 extern crate test;
 
+use super::Bound;
 use std::cmp::{self, Ordering};
-#[cfg(feature = "unstable")]
-use std::collections::Bound;
 use std::default;
 use std::fmt;
 use std::hash::{self, Hash};
@@ -647,9 +646,8 @@ impl<T> SkipList<T> {
     /// # Examples
     ///
     /// ```
-    /// #![feature(collections_bound)]
     /// use skiplist::SkipList;
-    /// use std::collections::Bound::{Included, Unbounded};
+    /// use skiplist::Bound::{Included, Unbounded};
     ///
     /// let mut skiplist = SkipList::new();
     /// skiplist.extend(0..10);
@@ -658,7 +656,6 @@ impl<T> SkipList<T> {
     /// }
     /// assert_eq!(Some(&4), skiplist.range(Included(4), Unbounded).next());
     /// ```
-    #[cfg(feature = "unstable")]
     pub fn range(&self, min: Bound<usize>, max: Bound<usize>) -> Iter<T> {
         unsafe {
             // We have to find the start and end nodes.  We use `find_value`; if no node with the
@@ -712,9 +709,8 @@ impl<T> SkipList<T> {
     /// # Examples
     ///
     /// ```
-    /// #![feature(collections_bound)]
     /// use skiplist::SkipList;
-    /// use std::collections::Bound::{Included, Unbounded};
+    /// use skiplist::Bound::{Included, Unbounded};
     ///
     /// let mut skiplist = SkipList::new();
     /// skiplist.extend(0..10);
@@ -723,7 +719,6 @@ impl<T> SkipList<T> {
     /// }
     /// assert_eq!(Some(&mut 4), skiplist.range_mut(Included(4), Unbounded).next());
     /// ```
-    #[cfg(feature = "unstable")]
     pub fn range_mut(&mut self, min: Bound<usize>, max: Bound<usize>) -> IterMut<T> {
         unsafe {
             // We have to find the start and end nodes.  We use `find_value`; if no node with the
@@ -1406,7 +1401,7 @@ impl<T> DoubleEndedIterator for IntoIter<T> {
 
 #[cfg(test)]
 mod tests {
-    use std::collections::Bound::{self, Included, Excluded, Unbounded};
+    use super::Bound::{self, Included, Excluded, Unbounded};
     use super::SkipList;
 
     #[test]

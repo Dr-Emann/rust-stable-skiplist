@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `stable_skiplist` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, stable_skiplist">
+
+    <title>stable_skiplist - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'stable_skiplist', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>stable_skiplist</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-0' class='srclink' href='../src/stable_skiplist/src/lib.rs.html#1-49' title='goto source code'>[src]</a></span></h1>
+<div class='docblock'><p>A skiplist is a way of storing elements in such a way that elements can be efficiently
+accessed, inserted and removed, all in <code>O(log(n))</code> on average.</p>
+
+<p>Conceptually, a skiplist resembles something like:</p>
+
+<pre><code class="language-text">&lt;head&gt; ----------&gt; [2] --------------------------------------------------&gt; [9] ----------&gt;
+&lt;head&gt; ----------&gt; [2] ------------------------------------[7] ----------&gt; [9] ----------&gt;
+&lt;head&gt; ----------&gt; [2] ----------&gt; [4] ------------------&gt; [7] ----------&gt; [9] --&gt; [10] -&gt;
+&lt;head&gt; --&gt; [1] --&gt; [2] --&gt; [3] --&gt; [4] --&gt; [5] --&gt; [6] --&gt; [7] --&gt; [8] --&gt; [9] --&gt; [10] -&gt;
+</code></pre>
+
+<p>where we each node <code>[x]</code> has references to nodes further down the list, allowing the algorithm
+to effectively skip ahead.</p>
+
+<p>The ordered skiplist has an associated sorting function which <strong>must</strong> be well-behaved.
+Specifically, given some ordering function <code>f(a, b)</code>, it must satisfy the folowing properties:</p>
+
+<ul>
+<li>Be well defined: <code>f(a, b)</code> should always return the same value</li>
+<li>Be anti-symmetric: <code>f(a, b) == Greater</code> iff <code>f(b, a) == Less</code> and <code>f(a, b) == Equal == f(b, a)</code>.</li>
+<li>By transitive: If <code>f(a, b) == Greater</code> and <code>f(b, c) == Greater</code> then <code>f(a, c) == Greater</code>.</li>
+</ul>
+
+<p><strong>Failure to satisfy these properties can result in unexpected behaviour at best, and at worst
+will cause a segfault, null deref, or some other bad behaviour.</strong></p>
+</div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<table><tr><td><code>pub use ordered_skiplist::<a class='struct' href='../stable_skiplist/ordered_skiplist/struct.OrderedSkipList.html' title='stable_skiplist::ordered_skiplist::OrderedSkipList'>OrderedSkipList</a>;</code></td></tr><tr><td><code>pub use skipmap::<a class='struct' href='../stable_skiplist/skipmap/struct.SkipMap.html' title='stable_skiplist::skipmap::SkipMap'>SkipMap</a>;</code></td></tr><tr><td><code>pub use skiplist::<a class='struct' href='../stable_skiplist/skiplist/struct.SkipList.html' title='stable_skiplist::skiplist::SkipList'>SkipList</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='ordered_skiplist/index.html'
+                                  title='stable_skiplist::ordered_skiplist'>ordered_skiplist</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='skiplist/index.html'
+                                  title='stable_skiplist::skiplist'>skiplist</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='mod' href='skipmap/index.html'
+                                  title='stable_skiplist::skipmap'>skipmap</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.Bound.html'
+                                  title='stable_skiplist::Bound'>Bound</a></td>
+                           <td class='docblock short'>
+                                <p>An endpoint of a range of keys.</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "stable_skiplist";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["IntoIter",""],["Iter",""],["OrderedSkipList","The ordered skiplist provides a way of storing elements such that they are always sorted and at the same time provides efficient way to access, insert and remove nodes. Just like `SkipList`, it also provides access to indices."]]});

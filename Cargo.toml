@@ -1,10 +1,10 @@
 [package]
 
-name = "skiplist"
-version = "0.2.10"
-authors = ["JP-Ellis <josh@jpellis.me>"]
+name = "stable-skiplist"
+version = "0.1.0"
+authors = ["JP-Ellis <josh@jpellis.me>", "Robert O'Callahan <robert@ocallahan.org>"]
 
-description = "Skiplist implementation in rust, providing fast insertion and removal.  A normal skiplist is implemented, as well as an ordered skiplist and a skipmap."
+description = "Skiplist implementation in rust, providing fast insertion and removal.  A normal skiplist is implemented, as well as an ordered skiplist and a skipmap. This is modified to work on stable Rust 1.9.0."
 
 documentation = "http://www.jpellis.me/rust-skiplist/skiplist/"
 homepage = "http://www.jpellis.me/projects/rust-skiplist/"

@@ -10,5 +10,8 @@ There are three kinds of collections defined here:
   allows for access nodes at a given index.
 - **SkipMap**  A map in which the keys are ordered.
 
+Documentation [here](https://rocallahan.github.io/rust-stable-skiplist/doc/stable_skiplist/), crate
+[here](https://crates.io/crates/stable-skiplist).
+
 This was forked from https://github.com/JP-Ellis/rust-skiplist and modified to use
 its own version of Bound, so that its `range` methods are usable with stable Rust.

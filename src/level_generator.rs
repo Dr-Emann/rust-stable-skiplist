@@ -28,7 +28,7 @@
 
 extern crate rand;
 
-use rand::distributions::{self, Sample};
+use rand::Rng;
 
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 // Level Generator
@@ -57,7 +57,6 @@ pub trait LevelGenerator {
 pub struct GeometricalLevelGenerator {
     total: usize,
     p: f64,
-    unit_range: distributions::Range<f64>,
     rng: rand::XorShiftRng, // Fast generator
 }
 
@@ -79,7 +78,6 @@ impl GeometricalLevelGenerator {
         GeometricalLevelGenerator {
             total: total,
             p: p,
-            unit_range: distributions::Range::new(0.0f64, 1.0),
             rng: rand::XorShiftRng::new_unseeded(),
         }
     }
@@ -89,7 +87,7 @@ impl LevelGenerator for GeometricalLevelGenerator {
     fn random(&mut self) -> usize {
         let mut h = 0;
         let mut x = self.p;
-        let f = 1.0 - self.unit_range.sample(&mut self.rng);
+        let f = 1.0 - self.rng.next_f64();
         while x > f && h + 1 < self.total {
             h += 1;
             x *= self.p

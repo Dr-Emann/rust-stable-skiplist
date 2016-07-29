@@ -30,6 +30,8 @@ extern crate rand;
 
 use rand::Rng;
 
+use std::cmp;
+
 // /////////////////////////////////////////////////////////////////////////////////////////////////
 // Level Generator
 // /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,14 +87,14 @@ impl GeometricalLevelGenerator {
 
 impl LevelGenerator for GeometricalLevelGenerator {
     fn random(&mut self) -> usize {
-        let mut h = 0;
-        let mut x = self.p;
-        let f = 1.0 - self.rng.next_f64();
-        while x > f && h + 1 < self.total {
-            h += 1;
-            x *= self.p
+        let x = self.rng.next_f64();
+        if x == 0.0 {
+            return 0;
         }
-        h
+        cmp::min(
+            self.total - 1,
+            ((x / self.p).ln() / (1.0 - self.p).ln()).ceil() as usize
+        )
     }
 
     fn total(&self) -> usize {
